@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://cwnsxdj087c4q"]
+
+[ext_resource type="Texture2D" uid="uid://blxjsvbtpxsja" path="res://Assets/ParallaxBG_Assets/parallax-demon-woods-bg.png" id="1_vvalf"]
+[ext_resource type="Texture2D" uid="uid://c8402abateped" path="res://Assets/ParallaxBG_Assets/parallax-demon-woods-far-trees.png" id="2_8b5bk"]
+[ext_resource type="Texture2D" uid="uid://ba8kple1nvhj3" path="res://Assets/ParallaxBG_Assets/parallax-demon-woods-mid-trees.png" id="3_neu5i"]
+[ext_resource type="Texture2D" uid="uid://b3he80r27fybw" path="res://Assets/ParallaxBG_Assets/parallax-demon-woods-close-trees.png" id="4_fpksf"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture_filter = 1
+position = Vector2(-2.6226044e-06, 0)
+scale = Vector2(1.2333332, 1)
+texture = ExtResource("1_vvalf")
+
+[node name="ParallaxBackground2" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground2"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer"]
+texture_filter = 1
+texture = ExtResource("2_8b5bk")
+
+[node name="ParallaxBackground3" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground3"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground3/ParallaxLayer"]
+texture_filter = 1
+texture = ExtResource("3_neu5i")
+
+[node name="ParallaxBackground4" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground4"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground4/ParallaxLayer"]
+texture_filter = 1
+texture = ExtResource("4_fpksf")

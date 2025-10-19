@@ -1,0 +1,72 @@
+[gd_scene load_steps=13 format=3 uid="uid://c6q5dg6oain2j"]
+
+[ext_resource type="Script" uid="uid://cs4ms4lrbearn" path="res://Scenes/PlayerMovement.gd" id="1_kyqiw"]
+[ext_resource type="Texture2D" uid="uid://ua4gauvg5cgq" path="res://Assets/MC/Idle.png" id="1_rpqav"]
+[ext_resource type="Texture2D" uid="uid://unijcnf5cul3" path="res://Assets/MC/Run/jacket0010.png" id="3_yoq75"]
+[ext_resource type="Texture2D" uid="uid://cggpaphlw0k5h" path="res://Assets/MC/Run/jacket0011.png" id="4_ksbbd"]
+[ext_resource type="Texture2D" uid="uid://8wcfmswfx5rp" path="res://Assets/MC/Run/jacket0012.png" id="5_glx4g"]
+[ext_resource type="Texture2D" uid="uid://dqwlxg6r4183b" path="res://Assets/MC/Run/jacket0013.png" id="6_miouo"]
+[ext_resource type="Texture2D" uid="uid://wk7uj3scxhdn" path="res://Assets/MC/Run/jacket0014.png" id="7_o3h8g"]
+[ext_resource type="Texture2D" uid="uid://bur8gx8jpmddb" path="res://Assets/MC/Run/jacket0015.png" id="8_1e7my"]
+[ext_resource type="Texture2D" uid="uid://dbl6x1d3fi2f2" path="res://Assets/MC/Run/jacket0008.png" id="9_arntx"]
+[ext_resource type="Texture2D" uid="uid://drymtxwweau4r" path="res://Assets/MC/Run/jacket0009.png" id="10_lslt6"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ulo2v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_rpqav")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_rpqav")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_yoq75")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ksbbd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_glx4g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_miouo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_o3h8g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_1e7my")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_arntx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_lslt6")
+}],
+"loop": true,
+"name": &"Run",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rpqav"]
+size = Vector2(83, 237)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_kyqiw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-4, -43)
+scale = Vector2(8.550677, 8.550676)
+sprite_frames = SubResource("SpriteFrames_ulo2v")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_rpqav")

@@ -1,0 +1,85 @@
+[gd_scene load_steps=7 format=3 uid="uid://csj367gaq7qw6"]
+
+[ext_resource type="PackedScene" uid="uid://c6q5dg6oain2j" path="res://Scenes/Player.tscn" id="1_hpc76"]
+[ext_resource type="Texture2D" uid="uid://blxjsvbtpxsja" path="res://Assets/ParallaxBG_Assets/parallax-demon-woods-bg.png" id="1_y4jh7"]
+[ext_resource type="Texture2D" uid="uid://c8402abateped" path="res://Assets/ParallaxBG_Assets/parallax-demon-woods-far-trees.png" id="2_q68mp"]
+[ext_resource type="Texture2D" uid="uid://ba8kple1nvhj3" path="res://Assets/ParallaxBG_Assets/parallax-demon-woods-mid-trees.png" id="3_f140w"]
+[ext_resource type="Texture2D" uid="uid://b3he80r27fybw" path="res://Assets/ParallaxBG_Assets/parallax-demon-woods-close-trees.png" id="5_0iob3"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tr2i4"]
+
+[node name="Main Scene" type="Node2D"]
+
+[node name="Background" type="ParallaxBackground" parent="."]
+offset = Vector2(960, 540)
+scale = Vector2(4, 4)
+transform = Transform2D(4, 0, 0, 4, 960, 540)
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Background"]
+motion_mirroring = Vector2(500, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/ParallaxLayer"]
+texture_filter = 1
+position = Vector2(-2.6226044e-06, 0)
+scale = Vector2(1.2333332, 1)
+texture = ExtResource("1_y4jh7")
+
+[node name="FarTrees" type="ParallaxBackground" parent="."]
+offset = Vector2(960, 540)
+scale = Vector2(4, 4)
+transform = Transform2D(4, 0, 0, 4, 960, 540)
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="FarTrees"]
+motion_scale = Vector2(0.3, 0.3)
+motion_mirroring = Vector2(500, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="FarTrees/ParallaxLayer"]
+texture_filter = 1
+texture = ExtResource("2_q68mp")
+
+[node name="LightShafts" type="ParallaxBackground" parent="."]
+offset = Vector2(960, 540)
+scale = Vector2(4, 4)
+transform = Transform2D(4, 0, 0, 4, 960, 540)
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="LightShafts"]
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(500, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="LightShafts/ParallaxLayer"]
+texture_filter = 1
+texture = ExtResource("3_f140w")
+
+[node name="Player" parent="." instance=ExtResource("1_hpc76")]
+position = Vector2(961, 763)
+deceleration = 0.8
+acceleration = 0.8
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+offset = Vector2(0, -220)
+zoom = Vector2(1.1, 1.1)
+process_callback = 0
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_left_margin = 0.1
+drag_top_margin = 0.1
+
+[node name="Ground" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+position = Vector2(961, 882)
+shape = SubResource("WorldBoundaryShape2D_tr2i4")
+
+[node name="CloseTrees" type="ParallaxBackground" parent="."]
+layer = 1
+offset = Vector2(960, 540)
+scale = Vector2(4, 4)
+transform = Transform2D(4, 0, 0, 4, 960, 540)
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="CloseTrees"]
+motion_scale = Vector2(0.1, 0.1)
+motion_mirroring = Vector2(500, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="CloseTrees/ParallaxLayer"]
+texture_filter = 1
+texture = ExtResource("5_0iob3")

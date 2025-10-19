@@ -1,0 +1,57 @@
+[gd_scene load_steps=5 format=3 uid="uid://cna613ytt3vg7"]
+
+[ext_resource type="Texture2D" uid="uid://blxjsvbtpxsja" path="res://Assets/ParallaxBG_Assets/parallax-demon-woods-bg.png" id="1_2ouff"]
+[ext_resource type="Texture2D" uid="uid://b3he80r27fybw" path="res://Assets/ParallaxBG_Assets/parallax-demon-woods-close-trees.png" id="2_d0dlv"]
+[ext_resource type="Texture2D" uid="uid://c8402abateped" path="res://Assets/ParallaxBG_Assets/parallax-demon-woods-far-trees.png" id="3_d0y2a"]
+[ext_resource type="Texture2D" uid="uid://ba8kple1nvhj3" path="res://Assets/ParallaxBG_Assets/parallax-demon-woods-mid-trees.png" id="4_xb7y0"]
+
+[node name="Parallax Scrolling Scen" type="Node2D"]
+
+[node name="OrangeBG" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="OrangeBG"]
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="OrangeBG/ParallaxLayer"]
+texture_filter = 1
+position = Vector2(1.5258789e-05, 0)
+scale = Vector2(4.9031096, 3.9889705)
+texture = ExtResource("1_2ouff")
+centered = false
+
+[node name="FarTrees" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="FarTrees"]
+motion_scale = Vector2(0.3, 0.3)
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="FarTrees/ParallaxLayer"]
+texture_filter = 1
+scale = Vector2(3.970589, 3.9705887)
+texture = ExtResource("3_d0y2a")
+centered = false
+
+[node name="LightRayTrees" type="ParallaxBackground" parent="."]
+scroll_offset = Vector2(2, 0)
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="LightRayTrees"]
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="LightRayTrees/ParallaxLayer"]
+texture_filter = 1
+scale = Vector2(3.966912, 3.9669118)
+texture = ExtResource("4_xb7y0")
+centered = false
+
+[node name="ClosestBlackTrees" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ClosestBlackTrees"]
+motion_scale = Vector2(0.1, 0.1)
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ClosestBlackTrees/ParallaxLayer"]
+texture_filter = 1
+scale = Vector2(3.966912, 3.9669118)
+texture = ExtResource("2_d0dlv")
+centered = false
