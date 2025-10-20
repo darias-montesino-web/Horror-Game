@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://cot377oslb10s"]
+
+[ext_resource type="Texture2D" uid="uid://ch53kodgq7cty" path="res://Attack3.png" id="1_8etx7"]
+[ext_resource type="Script" uid="uid://co0jn2vdlf5o1" path="res://villianchase.gd" id="1_58txq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gtjk6"]
+atlas = ExtResource("1_8etx7")
+region = Rect2(0, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d7hij"]
+atlas = ExtResource("1_8etx7")
+region = Rect2(150, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6pmjx"]
+atlas = ExtResource("1_8etx7")
+region = Rect2(300, 0, 150, 150)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_58txq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gtjk6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d7hij")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6pmjx")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_58txq"]
+radius = 11.045361
+
+[node name="Villian" type="CharacterBody2D"]
+script = ExtResource("1_58txq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(77, 608)
+sprite_frames = SubResource("SpriteFrames_58txq")
+animation = &"Idle"
+frame = 1
+frame_progress = 0.48713535
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(79, 626)
+shape = SubResource("CircleShape2D_58txq")
