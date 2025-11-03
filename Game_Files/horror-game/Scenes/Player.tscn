@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://c6q5dg6oain2j"]
+[gd_scene load_steps=37 format=3 uid="uid://c6q5dg6oain2j"]
 
 [ext_resource type="Script" uid="uid://cs4ms4lrbearn" path="res://Scripts/PlayerMovement.gd" id="1_kyqiw"]
 [ext_resource type="Texture2D" uid="uid://ua4gauvg5cgq" path="res://Assets/MC/Idle.png" id="1_rpqav"]
@@ -31,6 +31,7 @@
 [ext_resource type="Texture2D" uid="uid://cb5hffnpgomru" path="res://Assets/MC/Slash/jacket0092.png" id="29_wosd6"]
 [ext_resource type="Texture2D" uid="uid://c48umxfy53vr3" path="res://Assets/MC/Slash/jacket0093.png" id="30_hkrn1"]
 [ext_resource type="Texture2D" uid="uid://dbk616a62bbys" path="res://Assets/MC/Slash/jacket0094.png" id="31_wpo1r"]
+[ext_resource type="Script" uid="uid://wi82jvgcl8em" path="res://Scripts/attack_area.gd" id="32_avx33"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ulo2v"]
 animations = [{
@@ -143,9 +144,9 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("31_wpo1r")
 }],
-"loop": true,
+"loop": false,
 "name": &"Slash",
-"speed": 5.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -177,10 +178,17 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rpqav"]
-size = Vector2(83, 237)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c43xd"]
+radius = 37.0
+height = 252.0
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c43xd"]
+size = Vector2(78, 235)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_avx33"]
+size = Vector2(193, 268)
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_kyqiw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -192,4 +200,29 @@ animation = &"Slash"
 autoplay = "Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_rpqav")
+position = Vector2(-5, -9)
+shape = SubResource("CapsuleShape2D_c43xd")
+
+[node name="AttackArea" type="Area2D" parent="." groups=["slashHitbox"]]
+script = ExtResource("32_avx33")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(106, -74.5)
+shape = SubResource("RectangleShape2D_c43xd")
+disabled = true
+
+[node name="HitBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(-1.5, -13)
+shape = SubResource("RectangleShape2D_avx33")
+
+[node name="Cooldown" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
+[connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
+[connection signal="body_exited" from="HitBox" to="." method="_on_hit_box_body_exited"]
+[connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]
