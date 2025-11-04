@@ -1,11 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://ts5rkau7n6wu"]
+[gd_scene load_steps=9 format=3 uid="uid://ts5rkau7n6wu"]
 
 [ext_resource type="Script" uid="uid://p5d15t3g6feb" path="res://Scripts/title_screen.gd" id="1_12m1t"]
 [ext_resource type="Texture2D" uid="uid://blxjsvbtpxsja" path="res://Assets/ParallaxBG_Assets/parallax-demon-woods-bg.png" id="2_6vd4x"]
 [ext_resource type="Texture2D" uid="uid://c8402abateped" path="res://Assets/ParallaxBG_Assets/parallax-demon-woods-far-trees.png" id="3_n82rj"]
 [ext_resource type="Texture2D" uid="uid://ba8kple1nvhj3" path="res://Assets/ParallaxBG_Assets/parallax-demon-woods-mid-trees.png" id="4_0061g"]
 [ext_resource type="Texture2D" uid="uid://b3he80r27fybw" path="res://Assets/ParallaxBG_Assets/parallax-demon-woods-close-trees.png" id="5_8mikk"]
+[ext_resource type="Shader" uid="uid://drn2pqpk5vulr" path="res://Assets/title_screen.gdshader" id="6_6vd4x"]
 [ext_resource type="FontFile" uid="uid://cneqieamhf0i0" path="res://Assets/Pixelify_Sans/static/PixelifySans-Regular.ttf" id="6_sqelc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n82rj"]
+shader = ExtResource("6_6vd4x")
+shader_parameter/amount = 3.0
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
@@ -55,6 +60,12 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("5_8mikk")
 
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/Background"]
+material = SubResource("ShaderMaterial_n82rj")
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 custom_minimum_size = Vector2(1000, 500)
 layout_mode = 2
@@ -83,6 +94,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="StartButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+process_mode = 3
 custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -91,14 +103,34 @@ theme_override_fonts/font = ExtResource("6_sqelc")
 theme_override_font_sizes/font_size = 30
 text = "Start"
 
+[node name="Separator" type="Control" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
 [node name="ControlsButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+process_mode = 3
 custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_fonts/font = ExtResource("6_sqelc")
 theme_override_font_sizes/font_size = 30
-text = "Controls"
+text = "How to Play"
+
+[node name="Separator2" type="Control" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="QuitButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+process_mode = 3
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("6_sqelc")
+theme_override_font_sizes/font_size = 30
+text = "Quit"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/ControlsButton" to="." method="_on_controls_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

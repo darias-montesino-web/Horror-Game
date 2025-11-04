@@ -1,0 +1,100 @@
+[gd_scene load_steps=5 format=3 uid="uid://c1cl8o8xgqiby"]
+
+[ext_resource type="FontFile" uid="uid://cneqieamhf0i0" path="res://Assets/Pixelify_Sans/static/PixelifySans-Regular.ttf" id="1_hdmo1"]
+[ext_resource type="Script" uid="uid://bas86nxob3oxk" path="res://pause_menu.gd" id="1_nwcfo"]
+[ext_resource type="Shader" uid="uid://drn2pqpk5vulr" path="res://Assets/title_screen.gdshader" id="3_1och7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bpi0q"]
+shader = ExtResource("3_1och7")
+shader_parameter/amount = 3.0
+
+[node name="Pause Menu" type="Control"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.9993789, 0.99692595)
+script = ExtResource("1_nwcfo")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.9912583, 1.0048234)
+
+[node name="Blur" type="ColorRect" parent="MarginContainer"]
+material = SubResource("ShaderMaterial_bpi0q")
+custom_minimum_size = Vector2(1980, 1080)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+color = Color(0, 0, 0, 1)
+
+[node name="Side Menu" type="ColorRect" parent="MarginContainer"]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+color = Color(0, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Side Menu"]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 0
+offset_right = 700.0
+offset_bottom = 1080.0
+size_flags_horizontal = 0
+
+[node name="Label" type="Label" parent="MarginContainer/Side Menu/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_hdmo1")
+theme_override_font_sizes/font_size = 100
+text = "
+PAUSED
+"
+horizontal_alignment = 1
+
+[node name="MainMenuButton" type="Button" parent="MarginContainer/Side Menu/VBoxContainer"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("1_hdmo1")
+theme_override_font_sizes/font_size = 30
+text = "Main Menu"
+
+[node name="Separator2" type="Control" parent="MarginContainer/Side Menu/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="ResumeButton" type="Button" parent="MarginContainer/Side Menu/VBoxContainer"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("1_hdmo1")
+theme_override_font_sizes/font_size = 30
+text = "Resume"
+
+[node name="Separator3" type="Control" parent="MarginContainer/Side Menu/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="QuitButton" type="Button" parent="MarginContainer/Side Menu/VBoxContainer"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("1_hdmo1")
+theme_override_font_sizes/font_size = 30
+text = "Quit"
+
+[connection signal="pressed" from="MarginContainer/Side Menu/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="MarginContainer/Side Menu/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="MarginContainer/Side Menu/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

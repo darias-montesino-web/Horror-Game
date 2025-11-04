@@ -10,3 +10,4 @@ func _on_timer_timeout() -> void:
 	add_child(ene)
 	$Timer.start()
 	
+	get_tree().paused = false
